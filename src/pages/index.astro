@@ -4,7 +4,7 @@ import { TerminalText } from '../components/ui/terminal-text';
 ---
 
 <MainLayout content={{ title: 'Astro + TailwindCSS' }}>
-	<main class="flex items-center justify-center h-screen w-screen bg-black">
+	<main class="flex items-center justify-center h-screen w-screen bg-black overscroll-none">
 		<TerminalText client:load text="$ Loading, please wait..." speed={100} />
 	</main>
 </MainLayout>
