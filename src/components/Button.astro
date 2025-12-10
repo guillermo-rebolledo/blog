@@ -1,0 +1,47 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Omit<HTMLAttributes<'a'>, 'type'> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  href?: string;
+  type?: HTMLAttributes<'button'>['type'];
+}
+
+const { 
+  variant = 'primary', 
+  size = 'md', 
+  href,
+  class: className = '',
+  ...rest 
+} = Astro.props;
+
+const baseStyles = 'inline-flex items-center justify-center gap-2 font-jetbrains font-medium rounded-full transition-all duration-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed';
+
+const variants = {
+  primary: 'bg-black dark:bg-white text-white dark:text-black hover:bg-black/80 dark:hover:bg-white/80',
+  secondary: 'bg-black/10 dark:bg-white/10 text-black dark:text-white hover:bg-black/20 dark:hover:bg-white/20',
+  ghost: 'bg-transparent text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10',
+};
+
+const sizes = {
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-5 py-2.5 text-base',
+  lg: 'px-7 py-3 text-lg',
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className, 'select-none'].join(' ');
+
+const isLink = !!href;
+const linkProps = isLink ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+{isLink ? (
+  <a href={href} class={classes} {...linkProps} {...rest}>
+    <slot />
+  </a>
+) : (
+  <button class={classes} {...rest}>
+    <slot />
+  </button>
+)}

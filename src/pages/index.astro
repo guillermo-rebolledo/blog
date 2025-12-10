@@ -1,10 +1,100 @@
 ---
 import MainLayout from '../layouts/main.astro';
-import { TerminalText } from '../components/ui/terminal-text';
+import Button from '../components/Button.astro';
+import { Github, Linkedin, Mail } from '@lucide/astro';
 ---
 
-<MainLayout content={{ title: 'Astro + TailwindCSS' }}>
-	<main class="flex items-center justify-center h-screen w-screen bg-black overscroll-none">
-		<TerminalText client:load text="$ Loading, please wait..." speed={100} />
+<MainLayout content={{ title: 'Meet Memo Rebolledo 👋' }}>
+	<!-- Fixed navigation indicator - hidden on mobile, visible on md+ -->
+	<nav class="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
+		<button data-nav="0" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 1"></button>
+		<button data-nav="1" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 2"></button>
+		<button data-nav="2" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 3"></button>
+		<button data-nav="3" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 4"></button>
+	</nav>
+
+	<main class="w-full selection:bg-amber-200 selection:text-black">
+		<section data-section="0" class="h-screen w-full flex flex-col items-center justify-center bg-white dark:bg-black gap-8">
+			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24 lg:px-32 xl:px-40 max-w-6xl">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-jetbrains mb-4">Guillermo Rebolledo</h1>
+				<p class="text-base sm:text-lg font-geist text-center">
+					Frontend-focused Software Engineer with 7+ years of experience building accessible,
+					high-performance, and user-centered web applications. Expert in <span class="underline font-jetbrains">React</span>, <span class="underline font-jetbrains">TypeScript</span>, <span class="underline font-jetbrains">Design Systems</span>,
+					and <span class="underline font-jetbrains">UI architecture</span>. Led major frontend initiatives, improved lighthouse <span class="underline font-jetbrains">performance</span> to near 100,
+					reduced bundle size by 86%, and drove accessibility compliance to <span class="underline font-jetbrains">WCAG AA</span>. Passionate about
+					crafting high-quality interfaces, scalable component libraries, and great user experiences.
+				</p>
+			</div>
+
+			<div class="flex items-center justify-center gap-2">
+				<div class="w-4 h-4 bg-green-600 rounded-full animate-pulse"></div>
+				<p class="text-base sm:text-lg font-jetbrains font-stretch-semi-condensed text-black dark:text-white">Open to work</p>
+			</div>
+			<div class="flex flex-col lg:flex-row items-center justify-center gap-2">
+				<Button size='sm' href='mailto:gortiz.dev@gmail.com'><Mail />Get in touch</Button>
+				<Button size='sm' href='https://www.linkedin.com/in/gortizdev/'><Linkedin />Visit my LinkedIn</Button>
+				<Button size='sm' href='https://github.com/guillermo-rebolledo'><Github />Visit my GitHub</Button>
+			</div>
+		</section>
+
+		<section data-section="1" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
+			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 2</h1>
+				<p class="text-lg sm:text-xl md:text-2xl">Keep scrolling...</p>
+			</div>
+		</section>
+
+		<section data-section="2" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
+			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 3</h1>
+				<p class="text-lg sm:text-xl md:text-2xl">Almost there...</p>
+			</div>
+		</section>
+
+		<section data-section="3" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
+			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
+				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 4</h1>
+				<p class="text-lg sm:text-xl md:text-2xl">You made it!</p>
+			</div>
+		</section>
 	</main>
+
+	<script>
+		const sections = document.querySelectorAll('[data-section]');
+		const navDots = document.querySelectorAll('.nav-dot');
+
+		function updateActiveSection() {
+			const scrollY = window.scrollY;
+			const windowHeight = window.innerHeight;
+			
+			// Find which section is most visible
+			let currentSection = Math.round(scrollY / windowHeight);
+			currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
+			
+			// Update nav dots with Tailwind classes
+			navDots.forEach((dot, index) => {
+				if (index === currentSection) {
+					dot.classList.remove('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
+					dot.classList.add('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
+				} else {
+					dot.classList.remove('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
+					dot.classList.add('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
+				}
+			});
+		}
+
+		// Scroll to section when clicking nav dot
+		navDots.forEach((dot, index) => {
+			dot.addEventListener('click', () => {
+				const section = sections[index];
+				section.scrollIntoView({ behavior: 'smooth' });
+			});
+		});
+
+		// Update on scroll
+		window.addEventListener('scroll', updateActiveSection, { passive: true });
+		
+		// Initial update
+		updateActiveSection();
+	</script>
 </MainLayout>

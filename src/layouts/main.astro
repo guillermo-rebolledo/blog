@@ -1,5 +1,8 @@
 ---
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/geist';
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 const { content } = Astro.props;
 ---
 
@@ -10,8 +13,39 @@ const { content } = Astro.props;
 		<meta name="theme-color" content="#000000" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{content.title}</title>
+		<!-- Inline script to prevent FOUC - runs before page renders -->
+		<script is:inline>
+			(function() {
+				const THEME_KEY = 'theme-preference';
+				const stored = localStorage.getItem(THEME_KEY);
+				const theme = stored && ['light', 'dark', 'auto'].includes(stored) ? stored : 'auto';
+				
+				let effective;
+				if (theme === 'auto') {
+					effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				} else {
+					effective = theme;
+				}
+				
+				if (effective === 'dark') {
+					document.documentElement.classList.add('dark');
+				}
+				
+				// Update theme-color meta tag
+				const metaTheme = document.querySelector('meta[name="theme-color"]');
+				if (metaTheme) {
+					metaTheme.setAttribute('content', effective === 'dark' ? '#000000' : '#ffffff');
+				}
+			})();
+		</script>
 	</head>
-	<body class="overscroll-none m-0 p-0 overflow-x-hidden overflow-y-hidden">
+	<body class="overscroll-none m-0 p-0 overflow-x-hidden min-h-screen pb-16">
+		<ThemeToggle />
 		<slot />
+		<footer class="fixed bottom-0 left-0 right-0 h-14 bg-background/80 backdrop-blur-sm border-t border-border flex items-center justify-center">
+			<p class="text-sm text-black dark:text-white font-jetbrains">
+				Made with <span role="img" aria-label="Coffee">☕️</span> by <a href="http://linkedin.com/in/gortizdev" target="_blank" class="underline">Guillermo Rebolledo</a> / {new Date().getFullYear()}
+			</p>
+		</footer>
 	</body>
 </html>
