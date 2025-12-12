@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'div'> {
+  cols?: 1 | 2 | 3 | 4 | 5 | 6;
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const { cols = 3, gap = 'md', class: className = '', ...rest } = Astro.props;
+
+const gaps = {
+  sm: 'gap-2',
+  md: 'gap-4',
+  lg: 'gap-6',
+  xl: 'gap-8',
+};
+
+const columns = {
+  1: 'lg:grid-cols-1',
+  2: 'lg:grid-cols-2',
+  3: 'lg:grid-cols-3',
+  4: 'lg:grid-cols-4',
+  5: 'lg:grid-cols-5',
+  6: 'lg:grid-cols-6',
+};
+
+const classes = ['grid', 'w-full', 'grid-cols-1', columns[cols], gaps[gap], className].join(' ');
+---
+
+<div class={classes} {...rest}>
+  <slot />
+</div>

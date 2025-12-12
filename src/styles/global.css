@@ -1,8 +1,8 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-jetbrains: "JetBrains Mono Variable", monospace;
-  --font-geist: "Geist Variable", sans-serif;
+  --font-jetbrains: 'JetBrains Mono Variable', monospace;
+  --font-geist: 'Geist Variable', sans-serif;
 }

@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'li'> {
+  variant?: 'default' | 'outline' | 'subtle';
+  size?: 'sm' | 'md';
+}
+
+const { variant = 'default', size = 'sm', class: className = '', ...rest } = Astro.props;
+
+const baseStyles =
+  'inline-flex items-center justify-center font-jetbrains font-medium rounded-full transition-all duration-300';
+
+const variants = {
+  default: 'bg-black/10 dark:bg-white/20 text-black dark:text-white',
+  outline: 'bg-transparent border border-black/20 dark:border-white/40 text-black dark:text-white',
+  subtle: 'bg-black/5 dark:bg-white/15 text-black/80 dark:text-white/80',
+};
+
+const sizes = {
+  sm: 'px-3 py-1 text-sm',
+  md: 'px-4 py-1.5 text-base',
+};
+
+const classes = [baseStyles, variants[variant], sizes[size], className].join(' ');
+---
+
+<li class={classes} {...rest}>
+  <slot />
+</li>

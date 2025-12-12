@@ -1,100 +1,368 @@
 ---
 import MainLayout from '../layouts/main.astro';
 import Button from '../components/Button.astro';
+import Grid from '../components/Grid.astro';
+import Chip from '../components/Chip.astro';
 import { Github, Linkedin, Mail } from '@lucide/astro';
 ---
 
 <MainLayout content={{ title: 'Meet Memo Rebolledo 👋' }}>
-	<!-- Fixed navigation indicator - hidden on mobile, visible on md+ -->
-	<nav class="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-4">
-		<button data-nav="0" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 1"></button>
-		<button data-nav="1" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 2"></button>
-		<button data-nav="2" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 3"></button>
-		<button data-nav="3" class="nav-dot w-3 h-3 rounded-full bg-black/30 dark:bg-white/30 hover:bg-black/50 dark:hover:bg-white/50 transition-all duration-300" aria-label="Go to section 4"></button>
-	</nav>
+  <!-- Fixed navigation indicator - hidden on mobile, visible on md+ -->
+  <nav class="fixed top-1/2 left-4 z-50 hidden -translate-y-1/2 flex-col gap-4 md:left-8 md:flex">
+    <button
+      data-nav="0"
+      class="nav-dot h-3 w-3 rounded-full bg-black/30 transition-all duration-300 hover:bg-black/50 dark:bg-white/30 dark:hover:bg-white/50"
+      aria-label="Go to section 1"></button>
+    <button
+      data-nav="1"
+      class="nav-dot h-3 w-3 rounded-full bg-black/30 transition-all duration-300 hover:bg-black/50 dark:bg-white/30 dark:hover:bg-white/50"
+      aria-label="Go to section 2"></button>
+    <button
+      data-nav="2"
+      class="nav-dot h-3 w-3 rounded-full bg-black/30 transition-all duration-300 hover:bg-black/50 dark:bg-white/30 dark:hover:bg-white/50"
+      aria-label="Go to section 3"></button>
+    <button
+      data-nav="3"
+      class="nav-dot h-3 w-3 rounded-full bg-black/30 transition-all duration-300 hover:bg-black/50 dark:bg-white/30 dark:hover:bg-white/50"
+      aria-label="Go to section 4"></button>
+  </nav>
 
-	<main class="w-full selection:bg-amber-200 selection:text-black">
-		<section data-section="0" class="h-screen w-full flex flex-col items-center justify-center bg-white dark:bg-black gap-8">
-			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24 lg:px-32 xl:px-40 max-w-6xl">
-				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-jetbrains mb-4">Guillermo Rebolledo</h1>
-				<p class="text-base sm:text-lg font-geist text-center">
-					Frontend-focused Software Engineer with 7+ years of experience building accessible,
-					high-performance, and user-centered web applications. Expert in <span class="underline font-jetbrains">React</span>, <span class="underline font-jetbrains">TypeScript</span>, <span class="underline font-jetbrains">Design Systems</span>,
-					and <span class="underline font-jetbrains">UI architecture</span>. Led major frontend initiatives, improved lighthouse <span class="underline font-jetbrains">performance</span> to near 100,
-					reduced bundle size by 86%, and drove accessibility compliance to <span class="underline font-jetbrains">WCAG AA</span>. Passionate about
-					crafting high-quality interfaces, scalable component libraries, and great user experiences.
-				</p>
-			</div>
+  <main
+    class="flex w-full flex-col gap-24 text-black selection:bg-amber-200 selection:text-black md:gap-0 dark:text-white"
+  >
+    <section
+      data-section="0"
+      class="flex min-h-screen w-full flex-col items-center justify-center gap-8 bg-white dark:bg-black"
+    >
+      <div class="max-w-6xl px-6 text-center sm:px-12 md:px-24 lg:px-32 xl:px-40">
+        <h1 class="font-jetbrains mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
+          Guillermo Rebolledo
+        </h1>
+        <p class="text-center font-sans text-base sm:text-lg">
+          Frontend-focused Software Engineer with 7+ years of experience building accessible,
+          high-performance, and user-centered web applications. Expert in <span
+            class="font-jetbrains underline">React</span
+          >, <span class="font-jetbrains underline">TypeScript</span>, <span
+            class="font-jetbrains underline">Design Systems</span
+          >, and <span class="font-jetbrains underline">UI architecture</span>. Led major frontend
+          initiatives, improved lighthouse <span class="font-jetbrains underline">performance</span> to
+          near 100, reduced bundle size by 86%, and drove accessibility compliance to <span
+            class="font-jetbrains underline">WCAG AA</span
+          >. Passionate about crafting high-quality interfaces, scalable component libraries, and
+          great user experiences.
+        </p>
+      </div>
 
-			<div class="flex items-center justify-center gap-2">
-				<div class="w-4 h-4 bg-green-600 rounded-full animate-pulse"></div>
-				<p class="text-base sm:text-lg font-jetbrains font-stretch-semi-condensed text-black dark:text-white">Open to work</p>
-			</div>
-			<div class="flex flex-col lg:flex-row items-center justify-center gap-2">
-				<Button size='sm' href='mailto:gortiz.dev@gmail.com'><Mail />Get in touch</Button>
-				<Button size='sm' href='https://www.linkedin.com/in/gortizdev/'><Linkedin />Visit my LinkedIn</Button>
-				<Button size='sm' href='https://github.com/guillermo-rebolledo'><Github />Visit my GitHub</Button>
-			</div>
-		</section>
+      <div class="flex items-center justify-center gap-2">
+        <div class="h-4 w-4 animate-pulse rounded-full bg-green-600"></div>
+        <p
+          class="font-jetbrains text-base text-black font-stretch-semi-condensed sm:text-lg dark:text-white"
+        >
+          Open to work
+        </p>
+      </div>
+      <div class="flex flex-col items-center justify-center gap-2 lg:flex-row">
+        <Button size="sm" href="mailto:gortiz.dev@gmail.com"><Mail />Get in touch</Button>
+        <Button size="sm" href="https://www.linkedin.com/in/gortizdev/"
+          ><Linkedin />Visit my LinkedIn</Button
+        >
+        <Button size="sm" href="https://github.com/guillermo-rebolledo"
+          ><Github />Visit my GitHub</Button
+        >
+      </div>
+    </section>
 
-		<section data-section="1" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
-			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
-				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 2</h1>
-				<p class="text-lg sm:text-xl md:text-2xl">Keep scrolling...</p>
-			</div>
-		</section>
+    <section
+      data-section="1"
+      class="flex min-h-screen w-full flex-col items-center justify-center bg-white dark:bg-black"
+    >
+      <div class="flex w-full flex-col gap-24 px-6 text-center sm:px-12 md:px-24 lg:px-32 xl:px-40">
+        <h2 class="font-jetbrains mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
+          Core Skills
+        </h2>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            Frontend
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>React</Chip>
+            <Chip>Typescript / Javascript</Chip>
+            <Chip>Tailwind CSS</Chip>
+            <Chip>HTML / CSS</Chip>
+            <Chip>Accessibility</Chip>
+            <Chip>Storybook</Chip>
+            <Chip>Design Systems</Chip>
+            <Chip>UI Architecture</Chip>
+            <Chip>Performance Optimization</Chip>
+            <Chip>Jest & React Testing Library</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            Backend
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>Node.js</Chip>
+            <Chip>Express</Chip>
+            <Chip>Python</Chip>
+            <Chip>PostgreSQL</Chip>
+            <Chip>MySQL</Chip>
+            <Chip>Redis</Chip>
+            <Chip>REST</Chip>
+            <Chip>GraphQL</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            UI / UX Engineering
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>Figma</Chip>
+            <Chip>Accessibility (WCAG AA)</Chip>
+            <Chip>AXE</Chip>
+            <Chip>Lighthouse</Chip>
+            <Chip>Storybook</Chip>
+            <Chip>Interaction Design</Chip>
+            <Chip>Design Systems</Chip>
+            <Chip>Usage Metrics</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            Testing & Quality
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>Jest</Chip>
+            <Chip>React Testing Library</Chip>
+            <Chip>Lighthouse</Chip>
+            <Chip>Accessibility testing</Chip>
+            <Chip>Sentry</Chip>
+            <Chip>Datadog</Chip>
+            <Chip>Web vitals</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            AI Assisted Development
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>Claude Code</Chip>
+            <Chip>Cursor</Chip>
+            <Chip>GitHub Copilot (code reviews)</Chip>
+            <Chip>LLM powered debugging & test generation</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            Tools & Platforms
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>Git</Chip>
+            <Chip>Github Actions</Chip>
+            <Chip>Docker</Chip>
+            <Chip>React Profiler</Chip>
+            <Chip>Datadog</Chip>
+            <Chip>Mixpanel</Chip>
+          </ul>
+        </Grid>
+        <Grid cols={2}>
+          <h3
+            class="font-jetbrains flex size-full items-center justify-center text-2xl font-stretch-semi-condensed lg:justify-start"
+          >
+            Additional Skills
+          </h3>
+          <ul class="flex flex-wrap justify-center gap-2 lg:justify-end">
+            <Chip>React Native</Chip>
+            <Chip>Swift (basic to intermediate)</Chip>
+            <Chip>Observability</Chip>
+          </ul>
+        </Grid>
+      </div>
+    </section>
 
-		<section data-section="2" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
-			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
-				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 3</h1>
-				<p class="text-lg sm:text-xl md:text-2xl">Almost there...</p>
-			</div>
-		</section>
+    <section
+      data-section="2"
+      class="flex min-h-screen w-full flex-col items-center justify-center gap-16 bg-white py-24 dark:bg-black"
+    >
+      <div class="flex w-full flex-col gap-8 px-6 text-center sm:px-12 md:px-24 lg:px-32 xl:px-40">
+        <h2 class="font-jetbrains mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
+          Experience
+        </h2>
+        <div class="flex flex-col">
+          <h3 class="font-jetbrains text-2xl font-semibold font-stretch-semi-condensed">Cerby</h3>
+          <h4 class="font-jetbrains text-muted-foreground text-lg font-stretch-semi-condensed">
+            Software Engineer • Sep 2021 - Present
+          </h4>
+        </div>
+        <p>
+          At Cerby, I led key frontend initiatives across the <span class="font-jetbrains underline"
+            >web app</span
+          >, <span class="font-jetbrains underline">browser extension</span>, and <span
+            class="font-jetbrains underline">mobile</span
+          >
+          applications, focused on making them faster, more reliable, and genuinely enjoyable to use.
+          I pushed <span class="font-jetbrains underline">accessibility</span> to <span
+            class="font-jetbrains underline">WCAG AA</span
+          > standards, introduced user metrics with Datadog and Mixpanel to guide smarter product decisions,
+          and drove major performance wins, including an 86% reduction in bundle size and near-perfect
+          <span class="font-jetbrains underline">Lighthouse</span> scores. One of my favorite projects
+          was leading the frontend for Cerby’s password-manager migration tool—from research to architecture
+          to delivery—which played a part in landing one of the company’s largest customers. I also built
+          core features across the platform, contributed heavily to our <span
+            class="font-jetbrains underline">design system</span
+          >, and helped shape
+          <span class="font-jetbrains underline">frontend best practices</span> across the engineering
+          org.
+        </p>
+        <ul class="flex flex-wrap justify-center gap-2">
+          <Chip>React</Chip>
+          <Chip>Typescript</Chip>
+          <Chip>Tailwind CSS</Chip>
+          <Chip>Python</Chip>
+          <Chip>REST</Chip>
+          <Chip>Jest</Chip>
+          <Chip>React Testing Library</Chip>
+          <Chip>Lighthouse</Chip>
+          <Chip>Accessibility (WCAG AA)</Chip>
+          <Chip>Sentry</Chip>
+          <Chip>Datadog</Chip>
+          <Chip>Web vitals</Chip>
+          <Chip>Design Systems</Chip>
+        </ul>
+      </div>
 
-		<section data-section="3" class="h-screen w-full flex items-center justify-center bg-white dark:bg-black">
-			<div class="text-center text-black dark:text-white px-6 sm:px-12 md:px-24">
-				<h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Section 4</h1>
-				<p class="text-lg sm:text-xl md:text-2xl">You made it!</p>
-			</div>
-		</section>
-	</main>
+      <div class="flex w-full flex-col gap-8 px-6 text-center sm:px-12 md:px-24 lg:px-32 xl:px-40">
+        <div class="flex flex-col">
+          <h3 class="font-jetbrains text-2xl font-semibold font-stretch-semi-condensed">
+            Wizeline
+          </h3>
+          <h4 class="font-jetbrains text-muted-foreground text-lg font-stretch-semi-condensed">
+            Software Engineer • July 2018 - Sep 2021
+          </h4>
+        </div>
+        <p>
+          I had the chance to build products used around the world—from helping Google improve
+          mobile onboarding experiences to shipping payment flows through the Stripe partnership. I
+          developed tools for teams like the Golden State Warriors, improving the Chase Center’s
+          suite rental platform with faster SSR and a smoother mobile experience, and contributed to
+          the Wall Street Journal’s newsletter platform used by over 3 million readers. I also
+          worked with Subterra.ai, cutting costs and boosting performance by rethinking how video
+          was processed and delivered. I led a team to build internal tools—including a
+          Slack-integrated employee recognition system and a mobile-first office map with custom
+          animations—that streamlined how employees connected and navigated the workplace.
+        </p>
+        <ul class="flex flex-wrap justify-center gap-2">
+          <Chip>React</Chip>
+          <Chip>Typescript</Chip>
+          <Chip>HTML / CSS</Chip>
+          <Chip>Python</Chip>
+          <Chip>Jest</Chip>
+          <Chip>React Testing Library</Chip>
+          <Chip>GraphQL</Chip>
+          <Chip>Web vitals</Chip>
+          <Chip>Design Systems</Chip>
+        </ul>
+      </div>
 
-	<script>
-		const sections = document.querySelectorAll('[data-section]');
-		const navDots = document.querySelectorAll('.nav-dot');
+      <div class="flex w-full flex-col gap-8 px-6 text-center sm:px-12 md:px-24 lg:px-32 xl:px-40">
+        <div class="flex flex-col">
+          <h3 class="font-jetbrains text-2xl font-semibold font-stretch-semi-condensed">
+            Universidad de Guanajuato
+          </h3>
+          <h4 class="font-jetbrains text-muted-foreground text-lg font-stretch-semi-condensed">
+            Software Engineer • July 2017 - July 2018
+          </h4>
+        </div>
+        <p>
+          Built a job placement platform used by hundreds of graduating students & partner
+          companies.
+        </p>
+        <ul class="flex flex-wrap justify-center gap-2">
+          <Chip>jQuery</Chip>
+          <Chip>HTML / CSS</Chip>
+          <Chip>C#</Chip>
+          <Chip>SQL Server</Chip>
+        </ul>
+      </div>
+    </section>
 
-		function updateActiveSection() {
-			const scrollY = window.scrollY;
-			const windowHeight = window.innerHeight;
-			
-			// Find which section is most visible
-			let currentSection = Math.round(scrollY / windowHeight);
-			currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
-			
-			// Update nav dots with Tailwind classes
-			navDots.forEach((dot, index) => {
-				if (index === currentSection) {
-					dot.classList.remove('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
-					dot.classList.add('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
-				} else {
-					dot.classList.remove('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
-					dot.classList.add('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
-				}
-			});
-		}
+    <section
+      data-section="3"
+      class="flex min-h-screen items-center justify-center bg-white px-8 dark:bg-black"
+    >
+      <div class="px-6 text-center text-black sm:px-12 md:px-24 dark:text-white">
+        <h2 class="font-jetbrains mb-4 text-3xl font-bold sm:text-4xl md:text-5xl lg:text-6xl">
+          Thanks for stopping by!
+        </h2>
+        <p class="text-center font-sans text-xl">
+          I'm always looking for new opportunities to grow and learn. If you have any questions or
+          would like to <a
+            href="https://www.linkedin.com/in/gortizdev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-muted-foreground focus:text-muted-foreground underline">connect</a
+          >, please feel free to <a
+            href="mailto:gortiz.dev@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-muted-foreground focus:text-muted-foreground underline">reach out</a
+          >.
+        </p>
+        <p class="text-center font-sans text-base sm:text-lg">
+          More about me: I love music 🎸, photography 📸, travel 🌍 and video games 🎮.
+        </p>
+      </div>
+    </section>
+  </main>
 
-		// Scroll to section when clicking nav dot
-		navDots.forEach((dot, index) => {
-			dot.addEventListener('click', () => {
-				const section = sections[index];
-				section.scrollIntoView({ behavior: 'smooth' });
-			});
-		});
+  <script>
+    const sections = document.querySelectorAll('[data-section]');
+    const navDots = document.querySelectorAll('.nav-dot');
 
-		// Update on scroll
-		window.addEventListener('scroll', updateActiveSection, { passive: true });
-		
-		// Initial update
-		updateActiveSection();
-	</script>
+    function updateActiveSection() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+
+      // Find which section is most visible
+      let currentSection = Math.round(scrollY / windowHeight);
+      currentSection = Math.max(0, Math.min(currentSection, sections.length - 1));
+
+      // Update nav dots with Tailwind classes
+      navDots.forEach((dot, index) => {
+        if (index === currentSection) {
+          dot.classList.remove('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
+          dot.classList.add('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
+        } else {
+          dot.classList.remove('w-4', 'h-4', 'bg-black/80', 'dark:bg-white/80');
+          dot.classList.add('w-3', 'h-3', 'bg-black/30', 'dark:bg-white/30');
+        }
+      });
+    }
+
+    // Scroll to section when clicking nav dot
+    navDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        const section = sections[index];
+        section.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Update on scroll
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+
+    // Initial update
+    updateActiveSection();
+  </script>
 </MainLayout>
