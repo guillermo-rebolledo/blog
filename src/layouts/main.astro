@@ -44,17 +44,17 @@ const { content } = Astro.props;
       })();
     </script>
   </head>
-  <body class="m-0 min-h-screen overflow-x-hidden overscroll-none p-0 pb-16">
+  <body class="m-0 min-h-screen overflow-x-hidden overscroll-none bg-white p-0 dark:bg-black">
     <ThemeToggle />
     <slot />
     <footer
-      class="bg-background/80 border-border fixed right-0 bottom-0 left-0 flex h-14 items-center justify-center border-t backdrop-blur-sm"
+      class="fixed right-0 bottom-0 left-0 flex h-14 items-center justify-center border-t border-black/20 bg-white/80 backdrop-blur-sm dark:border-white/20 dark:bg-black/80"
     >
       <p class="font-jetbrains text-sm text-black dark:text-white">
         Made with <span role="img" aria-label="Coffee">☕️</span> by <a
           href="http://linkedin.com/in/gortizdev"
           target="_blank"
-          class="underline">Guillermo Rebolledo</a
+          class="underline hover:text-black/70 dark:hover:text-white/70">Guillermo Rebolledo</a
         > / {new Date().getFullYear()}
       </p>
     </footer>
